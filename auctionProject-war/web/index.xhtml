@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Persons page</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+
+            <fieldset>
+                <legend>Add person </legend>
+
+                First name: 
+                <h:inputText value="#{biddingBean.firstname}"
+                             id="firstnameInput">
+                </h:inputText>
+                <br/>
+
+                Family name: 
+                <h:inputText value="#{biddingBean.lastname}"
+                             id="lastnameInput">
+                </h:inputText>
+                <br/>
+
+
+                <h:commandButton value="Submit" 
+                                 action="addp_result.xhtml"/>
+                
+                
+                <br/>
+
+            </fieldset>
+        </h:form>
+        
+        <h:form>
+
+            <fieldset>
+                <legend>New item</legend>
+
+                Item name: 
+                <h:inputText value="#{biddingBean.bidName}"
+                             id="bidNameInput">
+                </h:inputText>
+                <br/>
+
+                Description: 
+                <h:inputText value="#{biddingBean.bidDescription}"
+                             id="bidDescriptionInput">
+                </h:inputText>
+                <br/>
+                
+                Start price: 
+                <h:inputText value="#{biddingBean.startPrice}"
+                             id="startPriceInput">
+                </h:inputText>
+                <br/>
+
+                Start date: 
+                <h:inputText value="#{biddingBean.startDate}"
+                             id="startDateInput">
+                </h:inputText>
+                <br/>
+                
+                End date:
+                <h:inputText value="#{biddingBean.endDate}"
+                             id="endDateInput">
+                </h:inputText>
+                <br/>
+                
+                Status: 
+                <h:inputText value="#{biddingBean.status}"
+                             id="statusInput">
+                </h:inputText>
+                <br/>
+                
+                Person ID:
+                <h:inputText value="#{biddingBean.findID}"
+                             id="findIDInput">
+                </h:inputText>
+                <br/>
+
+                <h:commandButton value="Submit" 
+                                 action="addi_result.xhtml"/>
+                
+                
+                <br/>
+
+            </fieldset>
+        </h:form>
+    </h:body>
+</html>
+
