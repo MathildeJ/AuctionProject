@@ -10,6 +10,7 @@ import auction.ItemManager;
 import auction.Person;
 import auction.PersonManager;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -35,10 +36,10 @@ public class BiddingBean implements Serializable {
     
     private String bidName;
     private String bidDescription;
-    private float startPrice;
-    private String startDate;
-    private String endDate;
-    private String status;
+    private double startPrice;
+    private Date startDate;
+    private Date endDate;
+    private int status;
     private Long findID;
     
     public PersonManager getPm() {
@@ -89,35 +90,35 @@ public class BiddingBean implements Serializable {
         this.bidDescription = bidDescription;
     }
 
-    public float getStartPrice() {
+    public double getStartPrice() {
         return startPrice;
     }
 
-    public void setStartPrice(float startPrice) {
+    public void setStartPrice(double startPrice) {
         this.startPrice = startPrice;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

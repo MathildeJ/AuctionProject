@@ -6,6 +6,7 @@
 package auction;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,7 +24,8 @@ public class ItemManagerBean implements ItemManager {
     private EntityManager em;
     
     @Override
-    public Item addItem(String name, String description, float startPrice, String startDate, String endDate, String status) {
+    public Item addItem(String name, String description, double startPrice,
+            Date startDate, Date endDate, int status) {
         Item i = new Item(name, description, startPrice, startDate, endDate, status);
         em.persist(i);
         System.gc();

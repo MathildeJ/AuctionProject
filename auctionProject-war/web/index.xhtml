@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Persons page</title>
     </h:head>
@@ -37,7 +39,7 @@
         <h:form>
 
             <fieldset>
-                <legend>New item</legend>
+                    <legend>New item</legend>
 
                 Item name: 
                 <h:inputText value="#{biddingBean.bidName}"
@@ -59,13 +61,15 @@
 
                 Start date: 
                 <h:inputText value="#{biddingBean.startDate}"
-                             id="startDateInput">
+                             id="startDateInput" a:placeholder="dd/mm/yyyy">
+                    <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <br/>
                 
                 End date:
                 <h:inputText value="#{biddingBean.endDate}"
-                             id="endDateInput">
+                             id="endDateInput" a:placeholder="dd/mm/yyyy">
+                    <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <br/>
                 

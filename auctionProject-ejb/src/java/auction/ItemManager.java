@@ -5,6 +5,7 @@
  */
 package auction;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,7 +16,8 @@ import javax.ejb.Local;
 @Local
 public interface ItemManager {
     
-    public Item addItem(String name, String description, float startPrice, String startDate, String endDate, String status);
+    public Item addItem(String name, String description, double startPrice,
+            Date startDate, Date endDate, int status);
     public List<Item> listItems();
     public void addPerson(Item item, Long id);
     

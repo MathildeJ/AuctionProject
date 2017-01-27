@@ -6,6 +6,7 @@
 package auction;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -40,16 +42,18 @@ public class Item implements Serializable {
     private String description;
     
     @Column(name = "startPrice")
-    private float startPrice;
+    private double startPrice;
     
     @Column(name = "startDate")
-    private String startDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date startDate;
         
     @Column(name = "endDate")
-    private String endDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date endDate;
     
     @Column(name = "status")
-    private String status;
+    private int status;
     
     @ManyToOne
     @JoinColumn(name="PERSON_ID", referencedColumnName="ID")
@@ -64,7 +68,7 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(String name, String description, float startPrice, String startDate, String endDate, String status) {
+    public Item(String name, String description, double startPrice, Date startDate, Date endDate, int status) {
         this.name = name;
         this.description = description;
         this.startPrice = startPrice;
@@ -97,35 +101,35 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public float getStartPrice() {
+    public double getStartPrice() {
         return startPrice;
     }
 
-    public void setStartPrice(float startPrice) {
+    public void setStartPrice(double startPrice) {
         this.startPrice = startPrice;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

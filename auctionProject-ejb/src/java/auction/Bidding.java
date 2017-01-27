@@ -27,7 +27,7 @@ public class Bidding implements Serializable {
     private Long id;
 
     @Column(name = "biddingPrice")
-    private String biddingPrice;
+    private double biddingPrice;
     
     @ManyToOne
     @JoinColumn(name="PERSON_ID", referencedColumnName="ID")
@@ -49,11 +49,11 @@ public class Bidding implements Serializable {
         this.id = id;
     }
 
-    public String getBiddingPrice() {
+    public double getBiddingPrice() {
         return biddingPrice;
     }
 
-    public void setBiddingPrice(String biddingPrice) {
+    public void setBiddingPrice(double biddingPrice) {
         this.biddingPrice = biddingPrice;
     }
 
