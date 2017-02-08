@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bid;
+package item;
 
 import auction.Item;
 import auction.ItemManager;
-import auction.Person;
-import auction.PersonManager;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -23,49 +21,23 @@ import javax.inject.Named;
 @Named
 //@RequestScoped
 @SessionScoped
-public class BiddingBean implements Serializable {
+public class ItemBean implements Serializable {
 
-    @EJB
-    private PersonManager pm;
-
-    private String firstname;
-    private String lastname;
-    
     @EJB
     private ItemManager im;
     
-    private String bidName;
+    private String itemName;
     private String bidDescription;
     private double startPrice;
     private Date startDate;
     private Date endDate;
-    private int status;
     private Long findID;
+    private List<String> categoriesID;
     
-    public PersonManager getPm() {
-        return pm;
-    }
-
-    public void setPm(PersonManager pm) {
-        this.pm = pm;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
+    private Long searchUser;
+    private int searchStatus;
+    
+    
     public ItemManager getIm() {
         return im;
     }
@@ -74,12 +46,12 @@ public class BiddingBean implements Serializable {
         this.im = im;
     }
 
-    public String getBidName() {
-        return bidName;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setBidName(String bidName) {
-        this.bidName = bidName;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getBidDescription() {
@@ -114,14 +86,6 @@ public class BiddingBean implements Serializable {
         this.endDate = endDate;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public Long getFindID() {
         return findID;
     }
@@ -129,23 +93,39 @@ public class BiddingBean implements Serializable {
     public void setFindID(Long findID) {
         this.findID = findID;
     }
-    
-    public void addp(){
-        //Person p = new Person(firstname,lastname);
-        pm.addPerson(firstname,lastname);
+
+    public List<String> getCategoriesID() {
+        return categoriesID;
     }
-    
-    public List<Person> allPersons(){
-        return pm.listPersons();
+
+    public void setCategoriesID(List<String> categoriesID) {
+        this.categoriesID = categoriesID;
     }
-    
-    public Person findPerson(){
-        return pm.findPerson(findID);
+
+    public Long getSearchUser() {
+        return searchUser;
+    }
+
+    public void setSearchUser(Long searchUser) {
+        this.searchUser = searchUser;
+    }
+
+    public int getSearchStatus() {
+        return searchStatus;
+    }
+
+    public void setSearchStatus(int searchStatus) {
+        this.searchStatus = searchStatus;
     }
     
     public void addi(){
-        Item i = im.addItem(bidName, bidDescription, startPrice, startDate, endDate, status);
+        Item i = im.addItem(itemName, bidDescription, startPrice, startDate, endDate);
         im.addPerson(i, findID);
+        im.addCategory(i, categoriesID);
+    }
+    
+    public List<Item> searchUserStatus(){
+        return im.listItemUserStatus(searchUser, searchStatus);
     }
     
     public List<Item> allItems(){

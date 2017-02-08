@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -26,7 +27,14 @@ import javax.persistence.Temporal;
  * @author Mathilde
  */
 @Entity
-@NamedQuery(name="Item.listAll", query = "SELECT i FROM Item i")
+
+@NamedQueries({
+    @NamedQuery(name="Item.listAll", 
+            query = "SELECT i FROM Item i"),
+    @NamedQuery(name="Item.listUserStatus",
+            query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
+}) 
+
 public class Item implements Serializable {
     @SequenceGenerator(name="sequ",sequenceName="item_seq")
     
@@ -68,13 +76,13 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(String name, String description, double startPrice, Date startDate, Date endDate, int status) {
+    public Item(String name, String description, double startPrice, Date startDate, Date endDate) {
         this.name = name;
         this.description = description;
         this.startPrice = startPrice;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.status = status;
+       
     }
 
     public Long getId() {
@@ -124,6 +132,7 @@ public class Item implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
 
     public int getStatus() {
         return status;

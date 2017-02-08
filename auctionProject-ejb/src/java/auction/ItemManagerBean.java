@@ -7,6 +7,7 @@ package auction;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,9 +25,8 @@ public class ItemManagerBean implements ItemManager {
     private EntityManager em;
     
     @Override
-    public Item addItem(String name, String description, double startPrice,
-            Date startDate, Date endDate, int status) {
-        Item i = new Item(name, description, startPrice, startDate, endDate, status);
+    public Item addItem(String name, String description, double startPrice, Date startDate, Date endDate) {
+        Item i = new Item(name, description, startPrice, startDate, endDate);
         em.persist(i);
         System.gc();
         return i;
@@ -51,5 +51,30 @@ public class ItemManagerBean implements ItemManager {
             person.setItems(set);
             em.persist(person);      
      }
+     
+    @Override
+    public void addCategory (Item item, List<String> cat){
+            Iterator<String> catIterator = cat.iterator(); 
+            while (catIterator.hasNext()) {
+                Category category = em.find(Category.class, catIterator.next());
+                List<Item> items = category.getItems();
+                items.add(item);
+                category.setItems(items);
+                em.persist(category);
+                List<Category> categories = item.getCategories();
+                categories.add(category);
+                item.setCategories(categories);
+                em.merge(item);
+            }
+    }
+    
+    @Override
+    public List<Item> listItemUserStatus(long searchUser, int searchStatus){
+       Person person = em.find(Person.class, searchUser);
+       Query query = em.createNamedQuery("Item.listUserStatus");
+       query.setParameter("person", person);
+       query.setParameter("status", searchStatus);
+       return (List<Item>) query.getResultList();
+    }
     
 }

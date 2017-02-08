@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>All items</title>
     </h:head>
@@ -12,7 +11,7 @@
 
         <h:form>
             <h:dataTable var="row" 
-                         value="#{itemBean.allItems()}"
+                         value="#{itemBean.searchUserStatus()}"
                          border="1" >
                 <h:column>
                     <f:facet name="header">Item name</f:facet>
@@ -46,7 +45,7 @@
             <p/>
             
         </h:form>
-        <h:button value="New item" outcome="index.xhtml" />
+        <h:button value="Back" outcome="searchUserStatus.xhtml" />
     </h:body>
 </html>
 

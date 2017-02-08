@@ -17,8 +17,10 @@ import javax.ejb.Local;
 public interface ItemManager {
     
     public Item addItem(String name, String description, double startPrice,
-            Date startDate, Date endDate, int status);
+            Date startDate, Date endDate);
     public List<Item> listItems();
     public void addPerson(Item item, Long id);
+    public void addCategory (Item item, List<String> cat);
+    public List<Item> listItemUserStatus(long searchUser, int searchStatus);
     
 }

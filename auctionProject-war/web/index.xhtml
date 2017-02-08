@@ -15,13 +15,13 @@
                 <legend>Add person </legend>
 
                 First name: 
-                <h:inputText value="#{biddingBean.firstname}"
+                <h:inputText value="#{personBean.firstname}"
                              id="firstnameInput">
                 </h:inputText>
                 <br/>
 
                 Family name: 
-                <h:inputText value="#{biddingBean.lastname}"
+                <h:inputText value="#{personBean.lastname}"
                              id="lastnameInput">
                 </h:inputText>
                 <br/>
@@ -36,51 +36,53 @@
             </fieldset>
         </h:form>
         
-        <h:form>
+        <h:form id="itemForm">
 
             <fieldset>
                     <legend>New item</legend>
 
                 Item name: 
-                <h:inputText value="#{biddingBean.bidName}"
+                <h:inputText value="#{itemBean.itemName}"
                              id="bidNameInput">
                 </h:inputText>
                 <br/>
 
                 Description: 
-                <h:inputText value="#{biddingBean.bidDescription}"
+                <h:inputText value="#{itemBean.bidDescription}"
                              id="bidDescriptionInput">
                 </h:inputText>
                 <br/>
                 
                 Start price: 
-                <h:inputText value="#{biddingBean.startPrice}"
+                <h:inputText value="#{itemBean.startPrice}"
                              id="startPriceInput">
                 </h:inputText>
                 <br/>
 
                 Start date: 
-                <h:inputText value="#{biddingBean.startDate}"
+                <h:inputText value="#{itemBean.startDate}"
                              id="startDateInput" a:placeholder="dd/mm/yyyy">
                     <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <br/>
                 
                 End date:
-                <h:inputText value="#{biddingBean.endDate}"
+                <h:inputText value="#{itemBean.endDate}"
                              id="endDateInput" a:placeholder="dd/mm/yyyy">
                     <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <br/>
                 
-                Status: 
-                <h:inputText value="#{biddingBean.status}"
-                             id="statusInput">
-                </h:inputText>
+                Category: 
+                <h:selectManyListbox id="categoriesInput" value="#{itemBean.categoriesID}">
+                    <f:selectItem id="cat1" itemLabel="Electronics" itemValue="Electronics" />
+                    <f:selectItem id="cat2" itemLabel="Home" itemValue="Home" />
+                    <f:selectItem id="cat3" itemLabel="Toys" itemValue="Toys" />
+                  </h:selectManyListbox> 
                 <br/>
-                
+               
                 Person ID:
-                <h:inputText value="#{biddingBean.findID}"
+                <h:inputText value="#{itemBean.findID}"
                              id="findIDInput">
                 </h:inputText>
                 <br/>
