@@ -22,5 +22,7 @@ public interface ItemManager {
     public void addPerson(Item item, Long id);
     public void addCategory (Item item, List<String> cat);
     public List<Item> listItemUserStatus(long searchUser, int searchStatus);
+    public List<Item> listItemByStatus(int searchStatus);
+    public Item findItem(Long id);
     
 }

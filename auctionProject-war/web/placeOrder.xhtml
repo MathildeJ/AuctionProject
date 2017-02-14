@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Place order</title>
+    </h:head>
+    <h:body>
+        
+        <h:form id="orderForm">
+
+            <fieldset>
+                    <legend>New order</legend>
+                    
+                Person ID: 
+                <h:inputText value="#{orderBean.personID}"
+                             id="orderPersonInput">
+                </h:inputText>
+                <br/>
+                
+                Item ID: 
+                <h:inputText value="#{orderBean.itemID}"
+                             id="orderItemNameInput">
+                </h:inputText>
+                <br/>
+                
+                Shipping address: 
+                <h:inputText value="#{orderBean.address}"
+                             id="addressInput">
+                </h:inputText>
+                <br/>
+
+               
+                <h:commandButton value="Submit order" 
+                                 action="placeOrder_result.xhtml"/>
+                
+                
+                <br/>
+
+            </fieldset>
+        </h:form>
+    </h:body>
+</html>
+

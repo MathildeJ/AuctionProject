@@ -8,6 +8,7 @@ package auction;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,8 @@ import javax.persistence.Temporal;
             query = "SELECT i FROM Item i"),
     @NamedQuery(name="Item.listUserStatus",
             query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
+    @NamedQuery(name="Item.listByStatus", 
+            query = "SELECT i FROM Item i WHERE i.status = :status"),
 }) 
 
 public class Item implements Serializable {
@@ -170,6 +173,31 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "auction.Item[ id=" + id + " ]";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Item other = (Item) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
     
 }

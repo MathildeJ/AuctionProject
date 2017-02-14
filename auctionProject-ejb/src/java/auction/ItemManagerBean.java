@@ -77,4 +77,17 @@ public class ItemManagerBean implements ItemManager {
        return (List<Item>) query.getResultList();
     }
     
+    @Override
+    public List<Item> listItemByStatus(int searchStatus){
+       Query query = em.createNamedQuery("Item.listByStatus");
+       query.setParameter("status", searchStatus);
+       return (List<Item>) query.getResultList();
+    }
+    
+    @Override
+    public Item findItem(Long id){
+        Item item = em.find(Item.class, id);
+        return item;
+    }
+    
 }
