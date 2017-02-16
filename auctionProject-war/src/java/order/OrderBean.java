@@ -7,8 +7,6 @@ package order;
 
 import auction.Item;
 import auction.ItemManager;
-import auction.OrderI;
-import auction.OrderManager;
 import auction.Person;
 import auction.PersonManager;
 import java.io.Serializable;
@@ -36,6 +34,10 @@ public class OrderBean implements Serializable {
     private long itemID;
     private String address;
 
+    public OrderBean(){    
+        
+    }
+    
     public OrderManager getOm() {
         return om;
     }
@@ -89,5 +91,9 @@ public class OrderBean implements Serializable {
         Item item = im.findItem(itemID);
         return om.addOrder(person, item, address);
     }
-
+    
+    public void testOrder(){
+        System.out.println("test");
+        om.sendOrder();
+    }
 }

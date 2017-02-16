@@ -3,11 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package auction;
+package order;
 
+import auction.Item;
+import auction.ItemManager;
+import auction.Person;
 import java.util.List;
+import javax.annotation.Resource;
+import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -25,12 +35,27 @@ public class OrderManagerBean implements OrderManager {
     @EJB
     ItemManager im;
     
+    @Resource(mappedName = "OrderRequestQueue")
+    private Queue orderRequestQueue;
+
+    @Inject
+    JMSContext context;
+    
+    @Resource(lookup="jms/OrderConnectionFactory")
+    private ConnectionFactory connectionFactory;
+    
+    private OrderI lastOrder;
+
+   /* @EJB
+    OrderManager om;
+    */
     @Override
     public OrderI addOrder(Person winner, Item item, String shippingAddress) {
         OrderI order = new OrderI(winner, item, shippingAddress);
         if(checkOrder(order) && newOrder(order)){
             order.setStatus(0);
             em.persist(order);
+            lastOrder = order;
             return order;
         } else {
             order.setStatus(-1);
@@ -53,7 +78,15 @@ public class OrderManagerBean implements OrderManager {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-    
+/*
+    public OrderI getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderI order) {
+        this.order = order;
+    }
+   */ 
     @Override
     public List<OrderI> listOrders(){
        Query query = em.createNamedQuery("OrderI.listAll");
@@ -96,5 +129,22 @@ public class OrderManagerBean implements OrderManager {
         List<Item> orderedItems = listItems();
         return(!orderedItems.contains(order.getItem()));
     }
-
+    
+    @Override
+    @Asynchronous
+    public void sendOrder(){ 
+        //testing with empty order
+        //OrderI order = new OrderI();
+        //System.out.println(context);
+        //context.createProducer().send(orderRequestQueue, order);
+        
+        //send last order placed
+        context.createProducer().send(orderRequestQueue, lastOrder);
+    }
+    
+    @Override
+    public void updateOrder(OrderI order){
+        order.setStatus(1);
+        em.merge(order);
+    }
 }
