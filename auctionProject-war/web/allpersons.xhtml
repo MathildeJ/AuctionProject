@@ -1,17 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/pages/templates/bootstrap.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <title>All persons</title>
-    </h:head>
-    <h:body>       
-        <h3>List of all persons </h3>
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <ui:define name="content">       
+      
+        <div class="page-header">
+            <h1>List of all persons</h1>
+        </div>
+        
         <h:form>
             <h:dataTable var="row" 
+                         class="table table-bordered table-striped"
                          value="#{personBean.allPersons()}"
                          border="1" >
                 <h:column>
@@ -26,6 +31,7 @@
             <p/>
             
         </h:form>
-        <h:button value="New person" outcome="index.xhtml" />
-    </h:body>
-</html>
+        <h:button value="New person" outcome="addperson.xhtml" />
+        
+    </ui:define>
+</ui:composition>

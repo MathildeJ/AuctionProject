@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="#{request.contextPath}/js/libs/twitter-bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/js/libs/twitter-bootstrap/css/bootstrap-theme.css" type="text/css" rel="stylesheet"/>
+        <title>Facelets Template</title>
+        <style type="text/css">
+             #features {
+                 margin-top:20px;
+             }
+             .feature, .feature i, .feature h3, .feature .title_border {
+                 -webkit-transition: all 1s ease-in-out;
+                 -moz-transition: all 1s ease-in-out;
+                 -o-transition: all 1s ease-in-out;
+                 transition: all 1s ease-in-out;    
+             }
+             .feature {
+                 background:#FFFFFF;
+                 text-align:center;
+                 padding:20px;
+                 border: solid 1px #cccccc;
+             }
+             .feature p {
+                 margin-top:20px;   
+                 margin-bottom:30px;   
+             }
+             .feature i{
+                 font-size:80px;
+                 color:#FFFFFF;
+                 background:#4db0cc;
+                 padding:30px;
+                 border-radius:50%;
+                 border: solid 3px #4db0cc;
+             }
+             .feature h3 {
+                 color:#4db0cc;  
+             }
+             .feature:hover {
+                 background:#F5F6F7;
+                 -webkit-transform: translate(0,1em);
+                 -moz-transform: translate(0,1em);
+                 -o-transform: translate(0,1em);
+                 -ms-transform: translate(0,1em);
+                 transform: translate(0,1em);    
+             }
+             .feature:hover i{
+                 color:#4db0cc;
+                 border-color:#4db0cc;
+                 background:#FFFFFF;
+             }
+             .feature:hover .title_border {
+                 background-color:#4db0cc;
+                 width:50%;
+             }
+             .feature .title_border {
+                 width: 0%;
+                 height: 3px;
+                 background:#4db0cc;
+                 margin: 0 auto;
+                 margin-top: 12px;
+                 margin-bottom: 8px;
+             }
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0 0 20px;
+                background: hsla(195, 100%, 97%, 1);
+            }
+        </style>
+    </h:head>
+ 
+    <h:body>
+        
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Auction project</a>
+                </div>
+                
+                <ul class="nav navbar-nav">
+                    <li class="#{fn:startsWith(request.pathInfo,'/index')?'active':'' } ">
+                        <h:link outcome="index" value="Home"/></li>
+                    <li class="#{fn:startsWith(request.pathInfo,'/allitems')?'active':'' } "><h:link outcome="allitems" value="Items"/></li>
+                </ul>   
+        </div>
+        
+        <div class="container" style="padding-top: 70px;">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+        
+    </h:body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="#{request.contextPath}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
+</html>

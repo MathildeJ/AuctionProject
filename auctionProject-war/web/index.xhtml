@@ -1,100 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/pages/templates/bootstrap.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    <h:head>
-        <title>Persons page</title>
-    </h:head>
-    <h:body>
-
-        <h:form>
-
-            <fieldset>
-                <legend>Add person </legend>
-
-                First name: 
-                <h:inputText value="#{personBean.firstname}"
-                             id="firstnameInput">
-                </h:inputText>
-                <br/>
-
-                Family name: 
-                <h:inputText value="#{personBean.lastname}"
-                             id="lastnameInput">
-                </h:inputText>
-                <br/>
-
-
-                <h:commandButton value="Submit" 
-                                 action="addp_result.xhtml"/>
-                
-                
-                <br/>
-
-            </fieldset>
-        </h:form>
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <ui:define name="content">
+     <!-- Template start from here -->
+         
+        <div class="jumbotron">
+                <h1>GLA Project</h1>
+                <p>Here are some instructions...</p>
+        </div>
+      
         
-        <h:form id="itemForm">
-
-            <fieldset>
-                    <legend>New item</legend>
-
-                Item name: 
-                <h:inputText value="#{itemBean.itemName}"
-                             id="bidNameInput">
-                </h:inputText>
-                <br/>
-
-                Description: 
-                <h:inputText value="#{itemBean.bidDescription}"
-                             id="bidDescriptionInput">
-                </h:inputText>
-                <br/>
-                
-                Start price: 
-                <h:inputText value="#{itemBean.startPrice}"
-                             id="startPriceInput">
-                </h:inputText>
-                <br/>
-
-                Start date: 
-                <h:inputText value="#{itemBean.startDate}"
-                             id="startDateInput" a:placeholder="dd/mm/yyyy">
-                    <f:convertDateTime pattern="dd/mm/yyyy" />
-                </h:inputText>
-                <br/>
-                
-                End date:
-                <h:inputText value="#{itemBean.endDate}"
-                             id="endDateInput" a:placeholder="dd/mm/yyyy">
-                    <f:convertDateTime pattern="dd/mm/yyyy" />
-                </h:inputText>
-                <br/>
-                
-                Category: 
-                <h:selectManyListbox id="categoriesInput" value="#{itemBean.categoriesID}">
-                    <f:selectItem id="cat1" itemLabel="Electronics" itemValue="Electronics" />
-                    <f:selectItem id="cat2" itemLabel="Home" itemValue="Home" />
-                    <f:selectItem id="cat3" itemLabel="Toys" itemValue="Toys" />
-                  </h:selectManyListbox> 
-                <br/>
-               
-                Person ID:
-                <h:inputText value="#{itemBean.findID}"
-                             id="findIDInput">
-                </h:inputText>
-                <br/>
-
-                <h:commandButton value="Submit" 
-                                 action="addi_result.xhtml"/>
-                
-                
-                <br/>
-
-            </fieldset>
-        </h:form>
-    </h:body>
-</html>
-
+        <div class="row" align="center">
+            <div class="col-md-3 feature">
+    	    <i class="glyphicon glyphicon-user"></i>
+            <h3>View Users</h3>
+            <div class="title_border"></div>
+            <p>Here you can view information about all registered/added users</p>
+            <h:link outcome="allpersons" class="btn btn-lg" value="LISTS USERS"/>
+            </div>
+            
+            <div class="col-md-3 feature">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+                <h3>View Items</h3>
+                <div class="title_border"></div>
+                <p>From here you get an overview of the items listed in the store</p>
+                <h:link outcome="allitems" class="btn btn-lg" value="LISTS ITEMS"/>
+            </div>
+            
+            <div class="col-md-3 feature">
+                <i class="glyphicon glyphicon-bitcoin"></i>
+                <h3>View Biddings</h3>
+                <div class="title_border"></div>
+                <p>Here you can list all biddings on a given item</p>
+                <h:link outcome="allbiddings" class="btn btn-lg" value="LISTS BIDDINGS"/>
+            </div>
+	</div>
+        
+        
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-bookmark"></span>Quick Access</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6">
+                              <a href="#" class="btn btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Add Person</a>
+                              <a href="#" class="btn btn-lg" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> <br/>Add Item</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <!-- Template ends here -->
+        </ui:define>
+</ui:composition>

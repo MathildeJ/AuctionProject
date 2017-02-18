@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/pages/templates/bootstrap.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <ui:define name="content">       
+      
+        <div class="page-header">
+            <h1>Add biddings</h1>
+        </div>
+        
+        <h:form id="itemForm" styleClass="form-horizontal">
+
+            
+                <div class="form-group">
+                    <h:outputLabel value="Item Name" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                            <h:inputText value="#{itemBean.itemName}" id="bidNameInput"  styleClass="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Description" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                            <h:inputText value="#{itemBean.bidDescription}" id="bidDescriptionInput"  styleClass="form-control"/>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <h:outputLabel value="Start price" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                            <h:inputText value="#{itemBean.startPrice}" id="startPriceInput"  styleClass="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Start date" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                            <h:inputText value="#{itemBean.startDate}" id="startDateInput"  a:placeholder="dd/mm/yyyy" styleClass="form-control">
+                                <f:convertDateTime pattern="dd/mm/yyyy" />
+                            </h:inputText>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="End date" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                        <h:inputText value="#{itemBean.endDate}" id="endDateInput"  a:placeholder="dd/mm/yyyy" styleClass="form-control">
+                                <f:convertDateTime pattern="dd/mm/yyyy" />
+                            </h:inputText>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                <h:outputLabel value="Category" styleClass="control-label col-sm-2"/>
+                <div class="col-sm-10">
+                <h:selectManyListbox id="categoriesInput" class="form-control"  value="#{itemBean.categoriesID}">
+
+                    <f:selectItem id="cat1" itemLabel="Electronics" itemValue="Electronics" />
+                    <f:selectItem id="cat2" itemLabel="Home" itemValue="Home" />
+                    <f:selectItem id="cat3" itemLabel="Toys" itemValue="Toys" />
+
+                  </h:selectManyListbox>
+                   </div>
+                
+                 </div>
+               
+                <div class="form-group">
+                <h:outputLabel value="Person ID" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-10">
+                     <h:inputText value="#{itemBean.findID}"
+                                 id="findIDInput" styleClass="form-control">
+                    </h:inputText>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <h:commandButton value="Add"
+                                 action="addi_result.xhtml" styleClass="btn btn-default"/>
+                    </div>
+                </div>
+
+        </h:form>
+        
+    </ui:define>
+ 
+</ui:composition>

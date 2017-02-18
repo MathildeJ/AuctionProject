@@ -11,47 +11,47 @@
     <ui:define name="content">       
 
         <div class="page-header">
-            <h1>List of all items</h1>
+            <h1>List of all biddings</h1>
         </div>
         
         <h:form>
             <h:dataTable var="row" 
                          class="table table-bordered table-striped"
-                         value="#{itemBean.allItems()}"
+                         value="#{biddingBean.allBidding()}"
                          border="1" >
                 <h:column>
                     <f:facet name="header">Item name</f:facet>
-                    #{row.name}
+                    #{row.item.name}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Description</f:facet>
-                    #{row.description}
+                    <f:facet name="header">Person first name</f:facet>
+                    #{row.person.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Person family name</f:facet>
+                    #{row.person.familyName}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Start price</f:facet>
-                    #{row.startPrice}
+                    #{row.item.startPrice}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Start date</f:facet>
-                    #{row.startDate}
+                    #{row.item.startDate}
                 </h:column>
                 <h:column>
                     <f:facet name="header">End date</f:facet>
-                    #{row.endDate}
+                    #{row.item.endDate}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Status</f:facet>
-                    #{row.status}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Person</f:facet>
-                    #{row.person}
+                    #{row.item.status}
                 </h:column>
             </h:dataTable>
             <p/>
             
         </h:form>
-        <h:button value="New item" outcome="additem.xhtml" />
+        <h:button value="New biddings" outcome="addbiddings.xhtml" />
         </ui:define>
  
 </ui:composition>
