@@ -10,6 +10,8 @@ import auction.ItemManager;
 import auction.Person;
 import auction.PersonManager;
 import java.io.Serializable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -33,6 +35,10 @@ public class OrderBean implements Serializable {
     private long personID;
     private long itemID;
     private String address;
+    private String CCType;
+    private long CCNumber;
+    
+    private CreditCard creditCard;
 
     public OrderBean(){    
         
@@ -85,15 +91,47 @@ public class OrderBean implements Serializable {
     public void setIm(ItemManager im) {
         this.im = im;
     }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public String getCCType() {
+        return CCType;
+    }
+
+    public void setCCType(String CCType) {
+        this.CCType = CCType;
+    }
+
+    public long getCCNumber() {
+        return CCNumber;
+    }
+
+    public void setCCNumber(long CCNumber) {
+        this.CCNumber = CCNumber;
+    }
+
     
     public OrderI placeOrder(){
         Person person = pm.findPerson(personID);
         Item item = im.findItem(itemID);
-        return om.addOrder(person, item, address);
+        OrderI o = om.addOrder(person, item, address, CCType, CCNumber);
+        return o;
     }
     
-    public void testOrder(){
-        System.out.println("test");
+    public void confirmOrder(){
+        Future<String> status;
+        String order;
         om.sendOrder();
+        try{
+          status = om.checkCreditCard();
+          order = status.get();
+        } catch(InterruptedException | ExecutionException ex){
+        }
     }
 }

@@ -45,7 +45,7 @@ public class OrderMessageBean implements MessageListener {
  
       } catch (JMSException ex) {
          mdctx.setRollbackOnly();
-      }       
+      } 
     }
     
 }

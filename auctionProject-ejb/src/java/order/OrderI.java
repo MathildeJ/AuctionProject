@@ -9,6 +9,7 @@ import auction.Item;
 import auction.Person;
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
@@ -52,8 +52,8 @@ public class OrderI implements Serializable {
     @Column(name = "SHIPPING_ADDRESS")
     private String shippingAddress;
     
-    @Column(name = "CREDIT_CARD")
-    private String creditCard;
+    @Embedded
+    private CreditCard creditCard;
     
     @Column(name = "STATUS")
     private int status;
@@ -108,17 +108,17 @@ public class OrderI implements Serializable {
         this.shippingAddress = shippingAddress;
     }
 
-    public String getCreditCard() {
+    public CreditCard getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(String creditCard) {
+    public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
     }
-    
+
     @Override
     public String toString() {
-        return "auction.Order[ id=" + id + ", person="+ winner +", item="+ item +", address="+ shippingAddress+", status="+ status +"]";
+        return "auction.Order[ id=" + id + ", person="+ winner +", item="+ item +", address="+ shippingAddress+", status="+ status + ", credit card="+ creditCard +"]";
     }
     
 }

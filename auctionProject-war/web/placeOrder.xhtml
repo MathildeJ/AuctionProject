@@ -31,8 +31,20 @@
                              id="addressInput">
                 </h:inputText>
                 <br/>
-
-               
+                
+                Credit Card: 
+                Type:
+                <h:inputText value="#{orderBean.CCType}"
+                             id="ccTypeInput">
+                </h:inputText>
+                
+                Number:
+                <h:inputText value="#{orderBean.CCNumber}"
+                             id="ccNumberInput">
+                </h:inputText>
+                
+                <br/>
+           
                 <h:commandButton value="Submit order" 
                                  action="placeOrder_result.xhtml"/>
                 

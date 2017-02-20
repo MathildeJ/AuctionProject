@@ -8,7 +8,7 @@ package order;
 import auction.Item;
 import auction.Person;
 import java.util.List;
-import javax.ejb.Local;
+import java.util.concurrent.Future;
 import javax.ejb.Remote;
 
 /**
@@ -17,7 +17,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface OrderManager {
-    public OrderI addOrder(Person winner, Item item, String shippingAddress);
+    public OrderI addOrder(Person winner, Item item, String shippingAddress, String cctype, long ccnumber);
     public List<OrderI> listOrders();
     public List<Item> listItems();
     public List<OrderI> listOrdersByPerson(long personId);
@@ -26,4 +26,5 @@ public interface OrderManager {
     public Boolean newOrder(OrderI order);
     public void sendOrder();
     public void updateOrder(OrderI order);
+    public Future<String> checkCreditCard();
 }

@@ -9,13 +9,15 @@ import auction.Item;
 import auction.ItemManager;
 import auction.Person;
 import java.util.List;
+import java.util.concurrent.Future;
 import javax.annotation.Resource;
+import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 import javax.persistence.EntityManager;
@@ -27,6 +29,7 @@ import javax.persistence.Query;
  * @author Mathilde
  */
 @Stateless
+//@Stateful
 public class OrderManagerBean implements OrderManager {
 
     @PersistenceContext(unitName="auctionProject-ejbPU")
@@ -46,12 +49,11 @@ public class OrderManagerBean implements OrderManager {
     
     private OrderI lastOrder;
 
-   /* @EJB
-    OrderManager om;
-    */
     @Override
-    public OrderI addOrder(Person winner, Item item, String shippingAddress) {
+    public OrderI addOrder(Person winner, Item item, String shippingAddress, String cctype, long ccnumber) {
         OrderI order = new OrderI(winner, item, shippingAddress);
+        CreditCard cc = new CreditCard(cctype, ccnumber);
+        order.setCreditCard(cc);
         if(checkOrder(order) && newOrder(order)){
             order.setStatus(0);
             em.persist(order);
@@ -78,15 +80,7 @@ public class OrderManagerBean implements OrderManager {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-/*
-    public OrderI getOrder() {
-        return order;
-    }
 
-    public void setOrder(OrderI order) {
-        this.order = order;
-    }
-   */ 
     @Override
     public List<OrderI> listOrders(){
        Query query = em.createNamedQuery("OrderI.listAll");
@@ -124,14 +118,14 @@ public class OrderManagerBean implements OrderManager {
     }
     
     @Override
-    // check if order has already been placed, could be removed if status of item was changed when it is ordered
+    // check if order has already been placed
+    //could be removed if status of item was changed when it is ordered
     public Boolean newOrder(OrderI order){
         List<Item> orderedItems = listItems();
         return(!orderedItems.contains(order.getItem()));
     }
     
     @Override
-    @Asynchronous
     public void sendOrder(){ 
         //testing with empty order
         //OrderI order = new OrderI();
@@ -140,11 +134,25 @@ public class OrderManagerBean implements OrderManager {
         
         //send last order placed
         context.createProducer().send(orderRequestQueue, lastOrder);
+        System.out.println("Your order has been sent.");
+    }
+    
+    @Override
+    @Asynchronous
+    public Future<String> checkCreditCard(){
+        String response = "";
+        if(lastOrder.getCreditCard().getCctype().equals("Visa")){
+            response = "Credit Card OK";
+        } else {
+            throw new IllegalArgumentException("Invalid credit card type (must be a Visa)");
+        }
+        return new AsyncResult<String>(response);
     }
     
     @Override
     public void updateOrder(OrderI order){
         order.setStatus(1);
         em.merge(order);
+        lastOrder = null;
     }
 }
