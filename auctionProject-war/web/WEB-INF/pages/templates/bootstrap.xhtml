@@ -8,8 +8,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- Include Bootstrap Framework -->
         <link href="#{request.contextPath}/js/libs/twitter-bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
         <link href="#{request.contextPath}/js/libs/twitter-bootstrap/css/bootstrap-theme.css" type="text/css" rel="stylesheet"/>
+        <!-- Include Bootstrap Datepicker -->
+        <link href="#{request.contextPath}/js/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/js/libs/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" type="text/css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/js/libs/bootstrap-datepicker/css/bootstrap-datepicker3.css" type="text/css" rel="stylesheet"/>
+        <!-- Include jQuery JavaScript -->
+        <script src="#{request.contextPath}/js/libs/jquery/jquery.min.js"></script>
         <title>Facelets Template</title>
         <style type="text/css">
              #features {
@@ -77,6 +84,15 @@
                 background: hsla(195, 100%, 97%, 1);
             }
         </style>
+        
+        <script>
+            $(document).ready(function() {
+                $('#datePickerstartDateInput, #datePickerendDateInput')
+                    .datepicker({
+                        autoclose: true,
+                        format: 'mm/dd/yyyy'
+                    })});
+        </script>
     </h:head>
  
     <h:body>
@@ -99,6 +115,7 @@
         </div>
         
     </h:body>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="#{request.contextPath}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="#{request.contextPath}/js/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
 </html>
