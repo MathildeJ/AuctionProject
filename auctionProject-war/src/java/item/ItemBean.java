@@ -19,7 +19,7 @@ import javax.inject.Named;
  * @author Mathilde
  */
 @Named
-//@RequestScoped
+//  @RequestScoped
 @SessionScoped
 public class ItemBean implements Serializable {
 
