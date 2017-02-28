@@ -5,6 +5,8 @@
  */
 package item;
 
+import auction.AddCategory;
+import auction.Category;
 import auction.Item;
 import auction.ItemManager;
 import java.io.Serializable;
@@ -25,6 +27,9 @@ public class ItemBean implements Serializable {
 
     @EJB
     private ItemManager im;
+    
+    @EJB
+    private AddCategory ca;
     
     private String itemName;
     private String bidDescription;
@@ -137,7 +142,10 @@ public class ItemBean implements Serializable {
     
     public List<Item> allItems(){
         return im.listItems();
-    }
+    }    
+    public List<Category> categoriesValue(){
+        return ca.listCategoryValue();
+    } 
 
     public List<Item> searchByName(String name) {
         return im.searchByName(name);
