@@ -21,7 +21,7 @@ import javax.inject.Named;
  * @author Mathilde
  */
 @Named
-//@RequestScoped
+//  @RequestScoped
 @SessionScoped
 public class ItemBean implements Serializable {
 
@@ -41,6 +41,7 @@ public class ItemBean implements Serializable {
     
     private Long searchUser;
     private int searchStatus;
+    private String searchName;
     
     
     public ItemManager getIm() {
@@ -115,6 +116,14 @@ public class ItemBean implements Serializable {
         this.searchUser = searchUser;
     }
 
+    public String getSearchName() {
+        return searchName;
+    }
+    
+    public void setSearchName(String searchName) {
+        this.searchName = searchName;
+    }
+    
     public int getSearchStatus() {
         return searchStatus;
     }
@@ -123,9 +132,8 @@ public class ItemBean implements Serializable {
     }
     
     public void addi(){
-        Item i = im.addItem(itemName, bidDescription, startPrice, startDate, endDate);
-        im.addPerson(i, findID);
-        im.addCategory(i, categoriesID);
+        im.addItem(itemName, bidDescription, startPrice, startDate, endDate,findID,categoriesID);
+      
     }    
     public List<Item> searchUserStatus(){
         return im.listItemUserStatus(searchUser, searchStatus);
@@ -137,4 +145,8 @@ public class ItemBean implements Serializable {
         return ca.listCategoryValue();
     } 
 
+    public List<Item> searchByName(String name) {
+        return im.searchByName(name);
+    }
+    
 }
