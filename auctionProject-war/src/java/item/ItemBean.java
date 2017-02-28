@@ -127,7 +127,7 @@ public class ItemBean implements Serializable {
     public int getSearchStatus() {
         return searchStatus;
     }
-
+    
     public void setSearchStatus(int searchStatus) {
         this.searchStatus = searchStatus;
     }
@@ -135,7 +135,7 @@ public class ItemBean implements Serializable {
     public void addi(){
         im.addItem(itemName, bidDescription, startPrice, startDate, endDate, findID, categoriesID);
     }
-    
+ 
     public List<Item> searchUserStatus(){
         return im.listItemUserStatus(searchUser, searchStatus);
     }

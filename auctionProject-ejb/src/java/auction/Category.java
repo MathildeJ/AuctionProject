@@ -54,7 +54,7 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        //return "auction.Category[ id=" + name + " ]";
+        //return "auction.Category[ id=" + name + " ]"; test
         return name;
     }
     
