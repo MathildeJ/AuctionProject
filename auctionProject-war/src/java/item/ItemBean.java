@@ -36,6 +36,7 @@ public class ItemBean implements Serializable {
     
     private Long searchUser;
     private int searchStatus;
+    private String searchName;
     
     
     public ItemManager getIm() {
@@ -110,6 +111,14 @@ public class ItemBean implements Serializable {
         this.searchUser = searchUser;
     }
 
+    public String getSearchName() {
+        return searchName;
+    }
+    
+    public void setSearchName(String searchName) {
+        this.searchName = searchName;
+    }
+    
     public int getSearchStatus() {
         return searchStatus;
     }
@@ -132,4 +141,8 @@ public class ItemBean implements Serializable {
         return im.listItems();
     }
 
+    public List<Item> searchByName(String name) {
+        return im.searchByName(name);
+    }
+    
 }

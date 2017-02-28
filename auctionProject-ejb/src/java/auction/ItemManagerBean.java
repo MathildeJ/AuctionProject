@@ -90,4 +90,11 @@ public class ItemManagerBean implements ItemManager {
         return item;
     }
     
+    @Override
+    public List<Item> searchByName(String name) {
+        Query query = em.createNamedQuery("Item.searchByName");
+        query.setParameter("name", name);
+        return (List<Item>) query.getResultList();
+    }
+    
 }
