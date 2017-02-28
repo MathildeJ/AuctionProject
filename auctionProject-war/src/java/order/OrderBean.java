@@ -131,6 +131,7 @@ public class OrderBean implements Serializable {
         try{
           status = om.checkCreditCard();
           order = status.get();
+          System.out.println(order);
         } catch(InterruptedException | ExecutionException ex){
         }
     }

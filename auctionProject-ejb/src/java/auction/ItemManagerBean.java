@@ -5,7 +5,6 @@
  */
 package auction;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -25,11 +24,19 @@ public class ItemManagerBean implements ItemManager {
     private EntityManager em;
     
     @Override
-    public Item addItem(String name, String description, double startPrice, Date startDate, Date endDate) {
-        Item i = new Item(name, description, startPrice, startDate, endDate);
-        em.persist(i);
-        System.gc();
-        return i;
+    public void addItem(String name, String description, double startPrice, Date startDate, Date endDate, Long id, List<String> categoriesId) {
+        if(endDate.compareTo(startDate)>0){
+            Item i = new Item(name, description, startPrice, startDate, endDate);
+            try{
+                addPerson(i, id);
+                addCategory(i, categoriesId);
+                em.persist(i);
+            } catch(Exception ex){
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("End date cannot be before start date.");
+        }
     }
     
     @Override
@@ -39,28 +46,21 @@ public class ItemManagerBean implements ItemManager {
     }
     
      @Override
-     public void addPerson(Item item, Long id){
+     public void addPerson(Item item, Long id) throws Exception{
             Person person = em.find(Person.class, id);
-            System.out.println(person);
-            item.setPerson(person);
-            em.merge(item);
-            //List<Item> set = new ArrayList<Item>();
-            //set.add(item); 
-            List<Item> set = person.getItems();
-            set.add(item);
-            person.setItems(set);
-            em.persist(person);      
+            if(person != null){
+                item.setPerson(person);
+                em.merge(item);
+            } else {
+                throw new Exception();
+            }    
      }
      
     @Override
     public void addCategory (Item item, List<String> cat){
             Iterator<String> catIterator = cat.iterator(); 
             while (catIterator.hasNext()) {
-                Category category = em.find(Category.class, catIterator.next());
-                List<Item> items = category.getItems();
-                items.add(item);
-                category.setItems(items);
-                em.persist(category);
+                Category category = em.find(Category.class, catIterator.next());          
                 List<Category> categories = item.getCategories();
                 categories.add(category);
                 item.setCategories(categories);
