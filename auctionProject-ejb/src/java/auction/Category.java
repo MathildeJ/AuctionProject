@@ -12,12 +12,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Mathilde
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Category.listAll", 
+            query = "SELECT c FROM Category c")
+}) 
 public class Category implements Serializable {
 
     @Id
@@ -48,7 +54,8 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "auction.Category[ id=" + name + " ]";
+        //return "auction.Category[ id=" + name + " ]";
+        return name;
     }
     
 }

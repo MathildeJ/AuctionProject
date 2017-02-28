@@ -5,6 +5,8 @@
  */
 package item;
 
+import auction.AddCategory;
+import auction.Category;
 import auction.Item;
 import auction.ItemManager;
 import java.io.Serializable;
@@ -25,6 +27,9 @@ public class ItemBean implements Serializable {
 
     @EJB
     private ItemManager im;
+    
+    @EJB
+    private AddCategory ca;
     
     private String itemName;
     private String bidDescription;
@@ -113,7 +118,6 @@ public class ItemBean implements Serializable {
     public int getSearchStatus() {
         return searchStatus;
     }
-
     public void setSearchStatus(int searchStatus) {
         this.searchStatus = searchStatus;
     }
@@ -122,14 +126,15 @@ public class ItemBean implements Serializable {
         Item i = im.addItem(itemName, bidDescription, startPrice, startDate, endDate);
         im.addPerson(i, findID);
         im.addCategory(i, categoriesID);
-    }
-    
+    }    
     public List<Item> searchUserStatus(){
         return im.listItemUserStatus(searchUser, searchStatus);
-    }
-    
+    }    
     public List<Item> allItems(){
         return im.listItems();
-    }
+    }    
+    public List<Category> categoriesValue(){
+        return ca.listCategoryValue();
+    } 
 
 }
