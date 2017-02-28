@@ -119,9 +119,7 @@ public class ItemBean implements Serializable {
     }
     
     public void addi(){
-        Item i = im.addItem(itemName, bidDescription, startPrice, startDate, endDate);
-        im.addPerson(i, findID);
-        im.addCategory(i, categoriesID);
+        im.addItem(itemName, bidDescription, startPrice, startDate, endDate, findID, categoriesID);
     }
     
     public List<Item> searchUserStatus(){

@@ -16,10 +16,10 @@ import javax.ejb.Local;
 @Local
 public interface ItemManager {
     
-    public Item addItem(String name, String description, double startPrice,
-            Date startDate, Date endDate);
+    public void addItem(String name, String description, double startPrice,
+            Date startDate, Date endDate, Long id, List<String> categoriesId);
     public List<Item> listItems();
-    public void addPerson(Item item, Long id);
+    public void addPerson(Item item, Long id) throws Exception;
     public void addCategory (Item item, List<String> cat);
     public List<Item> listItemUserStatus(long searchUser, int searchStatus);
     public List<Item> listItemByStatus(int searchStatus);
