@@ -14,6 +14,20 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Status Values
+ * Value    Label      Description 
+ * -1       Error      Something went wrong with the item.
+ *  0       New        Item just created and the start date is in the future
+ *  1       Open       Item open for biddings, start date in the pass end date in the future.
+ *  2       Closed     Item's auction finished, end date in the pass.
+ *  3       Ordered    Item ordered by the buyer.
+ *  4       Canceled   Item canceled by the buyer.
+ *  5       Removed    Item removed from auction by the seller.
+ *
+ */
+
+
+/**
  *
  * @author Mathilde
  */

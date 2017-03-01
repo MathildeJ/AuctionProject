@@ -31,28 +31,43 @@ public class TimeManagerBean implements TimeManager {
     @Schedule(second="0", minute="*", hour="*", dayOfMonth="*", month="*", year="*")
     public  void updateItemStatus(){
         
-        Date date = new Date();
+        Date today = new Date();
         Calendar c= Calendar.getInstance();
-        c.setTime(date);
-        System.out.println("test1");
+        c.setTime(today);
+        
+        //For testing purposes.
+//        c.add(Calendar.DAY_OF_MONTH, 2);
+//        today = c.getTime();
+//        c.setTime(today);
+         
+        //System.out.println(c.getTime());
+        c.add(Calendar.DAY_OF_MONTH, -1);
+        Date yesterday = c.getTime();
+        //System.out.println("Date of yesterday" + yesterday );
+        c.add(Calendar.DAY_OF_MONTH, 2);
+        Date tomorrow = c.getTime();
+        //System.out.println("Date of tomorrow" + tomorrow );
+        
         //Search for the open Items.
         List<Item> openItems = im.listItemByStatus(1);
         //Search for the new Items.
         List<Item> newItems = im.listItemByStatus(0);
         for(Item i:openItems){
-            if ( i.getEndDate().before(date)){
+            if ( i.getEndDate().before(today)){
                 // Set the status of the item to close.    
                 i.setStatus(2);
                 em.merge(i);
-                System.out.println("WE found some old dates");
+                System.out.println("Closing Bidding");
             }
         }
         
+
+        
         for(Item i:newItems){
-            c.add(Calendar.DAY_OF_MONTH, -1);
-            if ( i.getEndDate().after(c.getTime())){
-                c.add(Calendar.DAY_OF_MONTH, 2);
-                if ( i.getEndDate().before(c.getTime())){
+            
+            if ( i.getStartDate().after(yesterday)){
+                
+                if ( i.getStartDate().before(tomorrow)){
                     // Set the status of the item to open.
                     i.setStatus(1);
                     em.merge(i);
