@@ -28,7 +28,7 @@ public class TimeManagerBean implements TimeManager {
     @EJB
     private ItemManager im;
     
-    @Schedule(second="0", minute="*", hour="*", dayOfMonth="*", month="*", year="*")
+    @Schedule(second="0", minute="0", hour="*", dayOfMonth="*", month="*", year="*")
     public  void updateItemStatus(){
         
         Date today = new Date();

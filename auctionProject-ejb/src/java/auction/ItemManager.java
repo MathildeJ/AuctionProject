@@ -24,6 +24,7 @@ public interface ItemManager {
     public List<Item> listItemUserStatus(long searchUser, int searchStatus);
     public List<Item> listItemByStatus(int searchStatus);
     public Item findItem(Long id);
+    public void updateStatus(Item item);
 
     public List<Item> searchByName(String name);
     

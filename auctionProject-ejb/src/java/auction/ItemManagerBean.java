@@ -42,6 +42,7 @@ public class ItemManagerBean implements ItemManager {
         if(endDate.compareTo(startDate)>0){
             Item i = new Item(name, description, startPrice, startDate, endDate);
             try{
+                updateStatus(i);
                 addPerson(i, id);
                 addCategory(i, categoriesId);
                 em.persist(i);
@@ -109,6 +110,18 @@ public class ItemManagerBean implements ItemManager {
         Query query = em.createNamedQuery("Item.searchByName");
         query.setParameter("name", name);
         return (List<Item>) query.getResultList();
+    }
+    
+    @Override
+    public void updateStatus(Item item){
+        Date today = new Date();
+        
+        if (item.getStartDate().after(today)){
+            item.setStatus(0);
+        }
+        else{
+            item.setStatus(1);
+        }
     }
     
 }
