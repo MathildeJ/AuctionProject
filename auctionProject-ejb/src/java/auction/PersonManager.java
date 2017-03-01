@@ -15,6 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface PersonManager {
     public void addPerson(String firstName, String lastName);
+    public void addPerson(String firstName, String lastName, String address);
     public List<Person> listPersons();
     public Person findPerson(Long id);
 }

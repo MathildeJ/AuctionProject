@@ -124,4 +124,19 @@ public class ItemManagerBean implements ItemManager {
         }
     }
     
+    @Override
+    public List<Item> searchByCategory( List<String> categories ) {
+        String queryContent = "SELECT distinct i FROM Item i JOIN i.categories c where c.name = ";
+        for( String cat:categories )
+        {
+            queryContent = queryContent.concat( " c.name = \"" + cat + "\" OR ");
+        }
+        
+        queryContent = queryContent.substring(0, queryContent.length() - 4);
+        System.out.println(queryContent);
+        Query query = em.createQuery(queryContent);
+        //query.setParameter("name", name);
+        return (List<Item>) query.getResultList();
+    }
+    
 }

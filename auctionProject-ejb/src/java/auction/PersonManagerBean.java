@@ -28,6 +28,13 @@ public class PersonManagerBean implements PersonManager {
     }
     
     @Override
+    public void addPerson(String firstName, String lastName, String address) {
+        Person p = new Person(firstName, lastName, address);
+        em.persist(p);
+        System.gc();
+    }
+    
+    @Override
     public List<Person> listPersons(){
        Query query = em.createNamedQuery("Person.listAll");
        return (List<Person>) query.getResultList();

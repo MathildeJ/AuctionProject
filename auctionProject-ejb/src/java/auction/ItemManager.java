@@ -27,5 +27,6 @@ public interface ItemManager {
     public void updateStatus(Item item);
 
     public List<Item> searchByName(String name);
+     public List<Item> searchByCategory( List<String> categories );
     
 }

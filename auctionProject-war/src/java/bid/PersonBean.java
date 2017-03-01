@@ -27,6 +27,7 @@ public class PersonBean implements Serializable {
 
     private String firstname;
     private String lastname;
+    private String address;
     
    
     public PersonManager getPm() {
@@ -55,11 +56,25 @@ public class PersonBean implements Serializable {
 
     public void addp(){
         //Person p = new Person(firstname,lastname);
-        pm.addPerson(firstname,lastname);
+        pm.addPerson(firstname,lastname, address);
     }
     
     public List<Person> allPersons(){
         return pm.listPersons();
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

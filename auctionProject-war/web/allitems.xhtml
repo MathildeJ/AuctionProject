@@ -30,6 +30,24 @@
             </div>
         </div>
         
+        <h:form styleClass="form-horizontal">
+        <div class="form-group">
+                <h:outputLabel value="Category" styleClass="control-label col-sm-2"/>
+                <div class="col-sm-10">
+                <h:selectManyListbox id="categoriesInput" class="form-control"  value="#{itemBean.categoriesID}">
+                    <f:selectItems value="#{itemBean.categoriesValue()}" ></f:selectItems>                 
+                    <!--  <f:selectItem id="cat1" itemLabel="Electronics" itemValue="Electronics" />
+                    <f:selectItem id="cat2" itemLabel="Home" itemValue="Home" />
+                    <f:selectItem id="cat3" itemLabel="Toys" itemValue="Toys" /> -->
+                  </h:selectManyListbox>
+                 <h:commandButton value="Search" action="searchByCategory.xhtml" styleClass="btn btn-default"/>
+                 <div class="col-sm-offset-2 col-sm-10">
+                    </div>
+                  
+                   </div>
+                
+                 </div>
+        </h:form>
         <h:form>
             <h:dataTable var="row" 
                          class="table table-bordered table-striped"

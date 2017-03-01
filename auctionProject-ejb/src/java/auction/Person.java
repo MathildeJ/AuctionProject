@@ -94,6 +94,11 @@ public class Person implements Serializable {
         this.firstName = firstName;
         this.familyName = familyName;
     }
+    
+    public Person(String firstName, String familyName, String address){
+        this(firstName, familyName);
+        this.address = address;
+    }
 
     public List<Item> getItems() {
         return items;
