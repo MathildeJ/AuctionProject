@@ -63,6 +63,18 @@
             </div>
         </div>
      
+      <h:dataTable var="promotion" 
+                class="table table-bordered table-striped"
+                value="#{promotionBean.getPromotions()}"
+                border="1" >
+            <h:column>
+                <f:facet name="header">Check out our wonderful <b>promotions!!!</b> </f:facet>
+                #{promotion.toString()}
+            </h:column>
+       </h:dataTable>
+     
+     
+     
         <!-- Template ends here -->
         </ui:define>
 </ui:composition>
