@@ -42,7 +42,7 @@ import javax.persistence.Temporal;
     @NamedQuery(name="Item.searchByName", 
             query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name="Item.listOrderItem", 
-            query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
+            query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status AND i.startPrice=(select max(i.startPrice) from Item i group by i.name)"),
     
 }) 
 
