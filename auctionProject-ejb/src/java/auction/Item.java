@@ -180,7 +180,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "auction.Item[ id=" + id + " ]";
+        return name;
     }
 
     @Override
