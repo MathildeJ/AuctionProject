@@ -25,9 +25,9 @@ public interface ItemManager {
     public List<Item> listItemByStatus(int searchStatus);
     public Item findItem(Long id);
     public void updateStatus(Item item);
-
     public List<Item> searchByName(String name);
      public List<Item> searchByCategory( List<String> categories );
-    public List<Item> removeItemByUser(Long findID);
+    public void removeItemByUser(long searchUser);
+    public List<Item> listItemsForOrder(Long searchUser);
     
 }

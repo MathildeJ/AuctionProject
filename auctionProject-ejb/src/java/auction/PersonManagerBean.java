@@ -58,4 +58,5 @@ public class PersonManagerBean implements PersonManager {
         return (List<Person>) query.getResultList();
     }
     
+    
 }

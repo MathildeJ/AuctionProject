@@ -47,17 +47,41 @@
         </h:form>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <h:form styleClass="form-horizontal">
-                    <div class="form-group">
-                        <h:outputLabel value="Ener Person id to remove their items" styleClass="control-label col-sm-2"/>
-                        <div class="col-sm-10">
-                            <h:inputText value="#{itemBean.removeItem(itemBean.findID)}" id="findid"  styleClass="form-control" />
-                            <h:commandButton value="Remove"  action="searchByItemName.xhtml" styleClass="btn btn-default"/>
-                        </div>
-                    </div>
+               <h:form>
+                <fieldset>
+                    <legend>Remove item by seller </legend>
 
-                    <div class="col-sm-offset-2 col-sm-10">
-                    </div>
+                    User ID: 
+                    <h:inputText value="#{itemBean.searchUser}"
+                                 id="searchUserInput">
+                    </h:inputText>
+                    <h:commandButton value="remove" 
+                                     action="orderitem.xhtml"/>
+                  
+
+                    <br/>
+
+                </fieldset>
+                </h:form>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <h:form>
+                <fieldset>
+                    <legend>Items ready to Order </legend>
+
+                    User ID: 
+                    <h:inputText value="#{itemBean.searchUser}"
+                                 id="searchUserInput">
+                    </h:inputText>
+                    <h:commandButton value="Show Order List" 
+                                     action="orderitem.xhtml" 
+                                     />
+
+                    <br/>
+
+                </fieldset>
                 </h:form>
             </div>
         </div>
@@ -95,10 +119,10 @@
                     #{row.person}
                 </h:column>
             </h:dataTable>
-            <p/>            
+            <p/>  
+
         </h:form>
         <h:button value="New item" outcome="additem.xhtml" />
-        <h:button value="Items for Order" outcome="orderitem.xhtml" />
         </ui:define>
  
 </ui:composition>

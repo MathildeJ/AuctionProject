@@ -40,7 +40,10 @@ import javax.persistence.Temporal;
     // TODO complete the query for fetching the item's binding
             query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
     @NamedQuery(name="Item.searchByName", 
-            query = "SELECT i FROM Item i WHERE i.name = :name")
+            query = "SELECT i FROM Item i WHERE i.name = :name"),
+    @NamedQuery(name="Item.listOrderItem", 
+            query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
+    
 }) 
 
 public class Item implements Serializable {

@@ -141,18 +141,34 @@ public class ItemManagerBean implements ItemManager {
     }
 
     @Override
-    public List<Item> removeItemByUser(Long findID) {
-     Query query = em.createNamedQuery("Item.searchByName");
-        query.setParameter("name", "apple");
-                System.out.println("find Id=="+findID);
-
-        return (List<Item>) query.getResultList();
-      //  Query query = em.createNamedQuery("Item.searchByName");
-      //  query.setParameter("name", name);
-         
-       
+    public void removeItemByUser(long searchUser){  
         
+    
+       Person person = em.find(Person.class, searchUser);     
+       List<Item> items = person.getItems();          
+       for (Item item: items) {
+           System.out.println("item..."+item.getName());
+           em.remove(em.merge(item));   
+        }
+        /*Person person = em.find(Person.class, searchUser);     
+        List<Item> closedbids = listItemByStatus(2);       
+        List<Item> items = person.getItems();          
+        for (Item citem: closedbids) {
+            System.out.println("item..."+citem.getName());
+           for (Item item: items) {           
+                System.out.println("item..."+item.getName());
+                em.remove(em.merge(item));   
+           }
+        }*/
+    }   
+     @Override
+    public List<Item> listItemsForOrder(Long searchUser){
+        int searchStatus =2;
+        Person person = em.find(Person.class, searchUser);
+       Query query = em.createNamedQuery("Item.listUserStatus");
+       query.setParameter("person", person);
+       query.setParameter("status", searchStatus);
+       return (List<Item>) query.getResultList();
     }
-    
-    
 }
+    
