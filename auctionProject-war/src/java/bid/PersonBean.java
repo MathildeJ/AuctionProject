@@ -28,6 +28,15 @@ public class PersonBean implements Serializable {
     private String firstname;
     private String lastname;
     private String address;
+   /* private String searchName;
+
+    public String getSearchName() {
+        return searchName;
+    }
+
+    public void setSearchName(String searchName) {
+        this.searchName = searchName;
+    }*/
     
    
     public PersonManager getPm() {
@@ -75,6 +84,9 @@ public class PersonBean implements Serializable {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+     public List<Person> searchByPersonName(String firstname) {
+        return pm.searchByPersonName(firstname);
     }
 
 }

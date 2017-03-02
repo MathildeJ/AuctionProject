@@ -18,4 +18,5 @@ public interface PersonManager {
     public void addPerson(String firstName, String lastName, String address);
     public List<Person> listPersons();
     public Person findPerson(Long id);
+    public List<Person> searchByPersonName(String firstName);
 }

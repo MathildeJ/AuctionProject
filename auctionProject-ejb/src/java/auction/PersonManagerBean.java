@@ -45,5 +45,17 @@ public class PersonManagerBean implements PersonManager {
         Person p = em.find(Person.class, id);
         return p;
     }
+   /* public List<Person> searchByName(String firstName) {
+        Query query = em.createNamedQuery("Person.searchByfirstName");
+        query.setParameter("firstname", firstName);
+        return (List<Person>) query.getResultList();
+    }*/
+
+    @Override
+    public List<Person> searchByPersonName(String firstName) {
+        Query query = em.createNamedQuery("Person.searchByfirstName");
+        query.setParameter("firstname", firstName);
+        return (List<Person>) query.getResultList();
+    }
     
 }

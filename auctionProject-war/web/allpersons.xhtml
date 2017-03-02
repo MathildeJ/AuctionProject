@@ -9,7 +9,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
  
     <ui:define name="content">       
-      
+         <h:form styleClass="form-horizontal">
+                    <div class="form-group">
+                        <h:outputLabel value="Search by Name" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputText value="#{personBean.firstname}" id="firstnameInput1"  styleClass="form-control"/>
+                            <h:commandButton value="Search" action="searchByUser.xhtml" styleClass="btn btn-default"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-offset-2 col-sm-10">
+                    </div>
+                </h:form>
         <div class="page-header">
             <h1>List of all persons</h1>
         </div>

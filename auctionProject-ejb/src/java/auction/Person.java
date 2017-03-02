@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -22,7 +23,11 @@ import javax.persistence.Table;
  * @author Mathilde
  */
 @Entity
-@NamedQuery(name="Person.listAll", query = "SELECT p FROM Person p")
+@NamedQueries({
+    @NamedQuery(name="Person.listAll", query = "SELECT p FROM Person p"),
+    @NamedQuery(name="Person.searchByfirstName", 
+            query = "SELECT p FROM Person p WHERE p.firstName = :firstname")
+})
 @Table(name = "ROOT.PERSON")
 public class Person implements Serializable {
     @SequenceGenerator(name="seq",sequenceName="seqseq")
