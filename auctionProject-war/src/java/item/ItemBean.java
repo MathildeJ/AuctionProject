@@ -154,5 +154,9 @@ public class ItemBean implements Serializable {
     public List<Item> searchByCategory( List<String> categoriesIDs) {
         return im.searchByCategory(categoriesIDs);
     }
+    public List<Item> removeItem(Long findID){
+        
+        return im.removeItemByUser(findID);
+    }
     
 }

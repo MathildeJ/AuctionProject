@@ -8,6 +8,7 @@ package auction;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import javafx.scene.control.Alert;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -131,13 +132,27 @@ public class ItemManagerBean implements ItemManager {
         for( String cat:categories )
         {
             queryContent = queryContent.concat( " c.name = \"" + cat + "\" OR ");
-        }
-        
+        }        
         queryContent = queryContent.substring(0, queryContent.length() - 4);
         System.out.println(queryContent);
         Query query = em.createQuery(queryContent);
         //query.setParameter("name", name);
         return (List<Item>) query.getResultList();
     }
+
+    @Override
+    public List<Item> removeItemByUser(Long findID) {
+     Query query = em.createNamedQuery("Item.searchByName");
+        query.setParameter("name", "apple");
+                System.out.println("find Id=="+findID);
+
+        return (List<Item>) query.getResultList();
+      //  Query query = em.createNamedQuery("Item.searchByName");
+      //  query.setParameter("name", name);
+         
+       
+        
+    }
+    
     
 }
