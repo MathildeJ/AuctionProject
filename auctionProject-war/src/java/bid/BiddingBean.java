@@ -78,6 +78,11 @@ public class BiddingBean implements Serializable {
         bidManager.addBid(bidding);
     }
     
+    public boolean isBiddingPriceCorrect(){
+        Item item = itemManager.findItem(itemId);
+        return item.getStartPrice() < biddingPrice;
+    }
+    
     public List<Bidding> allBidding(){
         Item item = itemManager.findItem(itemId);
         return bidManager.getBids(item);

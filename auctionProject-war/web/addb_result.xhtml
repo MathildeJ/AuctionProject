@@ -1,13 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Welcome page</title>
-    </h:head>
-    <h:body>    
-        <h:outputText  value="#{biddingBean.addBidding()}"/>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/pages/templates/bootstrap.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+ 
+    <ui:define name="content">
+        <c:choose>
+            <c:when test="#{biddingBean.isBiddingPriceCorrect()}">
+               <h:outputText  value="#{biddingBean.addBidding()}"/>
+            </c:when>
+            <c:otherwise>
+                <div class="alert alert-warning">
+                    <strong>Warning!</strong> Bidding price is less than the starting price of the selected item.
+                </div>
+            </c:otherwise>
+        </c:choose>
         <br/>
-        <h:button value="All Biddings" outcome="allbiddings.xhtml" />    
-    </h:body>
-</html>
+        <h:button value="All Biddings" outcome="allbiddings.xhtml" styleClass="btn btn-default"/>    
+    </ui:define>
+ 
+</ui:composition>
