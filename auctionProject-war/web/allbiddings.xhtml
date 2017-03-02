@@ -19,7 +19,7 @@
                          class="table table-bordered table-striped"
                          value="#{biddingBean.allBidding()}"
                          border="1" >
-                <h:column>
+<!--                <h:column>
                     <f:facet name="header">Item name</f:facet>
                     #{row.item.name}
                 </h:column>
@@ -46,6 +46,10 @@
                 <h:column>
                     <f:facet name="header">Status</f:facet>
                     #{row.item.status}
+                </h:column>-->
+                <h:column>
+                    <f:facet name="header">Bidding Price</f:facet>
+                    #{row.biddingPrice}
                 </h:column>
             </h:dataTable>
             <p/>

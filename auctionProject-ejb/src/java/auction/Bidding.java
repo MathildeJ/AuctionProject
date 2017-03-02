@@ -21,6 +21,13 @@ import javax.persistence.NamedQuery;
  * @author Mathilde
  */
 @Entity
+
+@NamedQueries({
+    @NamedQuery(name="Bidding.listByItemId",
+    query="SELECT b FROM Bidding b WHERE b.item = :item AND b.person = :person"),
+    @NamedQuery(name="Bidding.listAll", 
+    query = "SELECT b FROM Bidding b")
+})
 public class Bidding implements Serializable {
     
     private static final long serialVersionUID = 1L;

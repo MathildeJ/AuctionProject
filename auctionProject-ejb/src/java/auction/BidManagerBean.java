@@ -36,9 +36,9 @@ public class BidManagerBean implements BidManager {
     }
 
     @Override
-    public List<Bidding> getBid(Item item) {
+    public List<Bidding> getBids(Item item) {
         // get list of bids
-        Query query = em.createNamedQuery("Item.listItemBiddings");
+        Query query = em.createNamedQuery("Bidding.listByItemId");
        return (List<Bidding>) query.getResultList();
     }
 

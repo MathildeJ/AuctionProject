@@ -17,5 +17,5 @@ public interface BidManager {
     public Bidding getBid(Long id);
     public void deleteBid(Bidding bid);
     public void updateBid(Bidding bid);
-    public List<Bidding> getBid(Item item);
+    public List<Bidding> getBids(Item item);
 }

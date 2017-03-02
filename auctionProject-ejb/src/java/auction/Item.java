@@ -36,9 +36,6 @@ import javax.persistence.Temporal;
             query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
     @NamedQuery(name="Item.listByStatus", 
             query = "SELECT i FROM Item i WHERE i.status = :status"),
-    @NamedQuery(name="Item.listItemBiddings",
-    // TODO complete the query for fetching the item's binding
-            query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status"),
     @NamedQuery(name="Item.searchByName", 
             query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name="Item.listOrderItem", 
