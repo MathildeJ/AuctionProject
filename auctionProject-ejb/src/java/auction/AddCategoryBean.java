@@ -43,10 +43,10 @@ public class AddCategoryBean implements AddCategory {
 //            Category category = new Category();        
 //            category.setName(cats.get(i));
 //            em.persist(category); 
-        em.persist(c1);
-        em.persist(c2);
-        em.persist(c3);
-        em.persist(c4);
+        em.merge(c1);
+        em.merge(c2);
+        em.merge(c3);
+        em.merge(c4);
         //}
     }
     @Override
