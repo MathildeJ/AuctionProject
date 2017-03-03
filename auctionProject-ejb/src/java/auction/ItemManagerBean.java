@@ -170,5 +170,12 @@ public class ItemManagerBean implements ItemManager {
        query.setParameter("status", searchStatus);
        return (List<Item>) query.getResultList();
     }
+
+    @Override
+    public void removeItem(Item item) {
+        em.getTransaction().begin();
+        em.remove(item);
+        em.getTransaction().commit();
+    }
 }
     

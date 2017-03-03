@@ -1,4 +1,5 @@
 package auction;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Remote;
@@ -15,7 +16,8 @@ public interface BidManager {
     public void addBid(Bidding bid);
     public void cancelBid(Bidding bid);
     public Bidding getBid(Long id);
-    public void deleteBid(Bidding bid);
+    public String deleteBid(Bidding bid);
     public void updateBid(Bidding bid);
-    public List<Bidding> getBids(Item item);
+    public List<Bidding> getBids();
+    public List<Bidding> getBidsByDate(Date startDate, Date endDate);
 }

@@ -29,5 +29,6 @@ public interface ItemManager {
      public List<Item> searchByCategory( List<String> categories );
     public void removeItemByUser(long searchUser);
     public List<Item> listItemsForOrder(Long searchUser);
+    public void removeItem(Item item);
     
 }

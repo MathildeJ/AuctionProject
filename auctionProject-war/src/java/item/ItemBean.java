@@ -161,5 +161,9 @@ public class ItemBean implements Serializable {
         return im.listItemsForOrder(searchUser);
     }
     
+    public void removeItem(Item item){
+        im.removeItem(item);
+    }
+    
     
 }

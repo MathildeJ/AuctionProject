@@ -11,12 +11,29 @@
  
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{biddingBean.isBiddingPriceCorrect()}">
-               <h:outputText  value="#{biddingBean.addBidding()}"/>
+            
+            <c:when test="#{biddingBean.isItemCorrect() == false}">
+               <div class="alert alert-danger">
+                    <strong>Warning!</strong> User not found.
+                </div>
             </c:when>
-            <c:otherwise>
-                <div class="alert alert-warning">
+            
+            <c:when test="#{biddingBean.isPersonCorrect() == false}">
+               <div class="alert alert-danger">
+                    <strong>Warning!</strong> User not found.
+                </div>
+            </c:when>
+            
+            <c:when test="#{biddingBean.isBiddingPriceCorrect() == false}">
+               <div class="alert alert-danger">
                     <strong>Warning!</strong> Bidding price is less than the starting price of the selected item.
+                </div>
+            </c:when>
+            
+            <c:otherwise>
+                <h:outputText  value="#{biddingBean.addBidding()}"/>
+                <div class="alert alert-success">
+                    <strong>Success.</strong> Bidding was added successfuly.
                 </div>
             </c:otherwise>
         </c:choose>

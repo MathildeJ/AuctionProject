@@ -6,6 +6,7 @@
 package auction;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,11 +39,11 @@ public class Bidding implements Serializable {
     @Column(name = "biddingPrice")
     private double biddingPrice;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="PERSON_ID", referencedColumnName="ID")
     private Person person;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ITEM_ID", referencedColumnName="ID")
     private Item item;
 

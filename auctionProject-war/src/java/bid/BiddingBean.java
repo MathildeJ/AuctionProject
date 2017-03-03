@@ -8,6 +8,8 @@ import auction.ItemManager;
 import auction.Person;
 import auction.PersonManager;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -23,13 +25,13 @@ public class BiddingBean implements Serializable {
 
     @EJB
     private BidManager bidManager;
-    
+
     @EJB
     private PersonManager personManager;
-    
+
     @EJB
     private ItemManager itemManager;
-    
+
     private Long personId = 0L;
     private Long itemId = 0L;
     private double biddingPrice;
@@ -57,7 +59,7 @@ public class BiddingBean implements Serializable {
     public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
-    
+
     public BidManager getBidManager() {
         return bidManager;
     }
@@ -66,8 +68,26 @@ public class BiddingBean implements Serializable {
         this.bidManager = bean;
     }
 
+    public boolean isPersonCorrect() {
+        if (personId == null) personId = -1L;
+        return personManager.findPerson(personId) != null;
+    }
 
-    public void addBidding(){
+    public boolean isBiddingPriceCorrect() {
+        Item item = itemManager.findItem(itemId);
+        if (item != null) {
+            return item.getStartPrice() < biddingPrice;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isItemCorrect() {
+        if (itemId == null) itemId = -1L;
+        return itemManager.findItem(itemId) != null;
+    }
+
+    public void addBidding() {
         // Find the owner of the item
         Person person = personManager.findPerson(personId);
         Item item = itemManager.findItem(itemId);
@@ -77,15 +97,29 @@ public class BiddingBean implements Serializable {
         bidding.setBiddingPrice(biddingPrice);
         bidManager.addBid(bidding);
     }
-    
-    public boolean isBiddingPriceCorrect(){
-        Item item = itemManager.findItem(itemId);
-        return item.getStartPrice() < biddingPrice;
+
+    public List<Bidding> allBidding() {
+        return bidManager.getBids();
     }
     
-    public List<Bidding> allBidding(){
-        Item item = itemManager.findItem(itemId);
-        return bidManager.getBids(item);
+    public List<Bidding> allWinningBiddding(){
+       List<Bidding> listWinningBids = new LinkedList<>();
+       for (Bidding bidding : bidManager.getBids()){
+           Item item = bidding.getItem();
+           if (item.getStartDate().after(new Date())){
+               continue;
+           }
+           if(item.getEndDate().before(new Date())){
+               listWinningBids.add(bidding);
+           }
+       }
+       return listWinningBids;
+    }
+    public void deleteBidding(Bidding bidding){
+        bidManager.deleteBid(bidding);
     }
 
+    public void cancelBidding(Bidding bidding){
+        bidManager.cancelBid(bidding);
+    }
 }

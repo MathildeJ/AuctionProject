@@ -118,6 +118,13 @@
                     <f:facet name="header">Person</f:facet>
                     #{row.person}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandLink value="Delete"
+                                   action="#{itemBean.removeItem(row)}" styleClass="btn btn-default">
+                        <i class='glyphicon glyphicon-trash'/>
+                    </h:commandLink>
+                </h:column>
             </h:dataTable>
             <p/>  
 
