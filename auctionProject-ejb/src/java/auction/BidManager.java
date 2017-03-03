@@ -18,5 +18,6 @@ public interface BidManager {
     public Bidding getBid(Long id);
     public void updateBid(Bidding bid);
     public List<Bidding> getBids();
+    public List<Bidding> getBidsByItem(Item item);
     public List<Bidding> getBidsByDate(Date startDate, Date endDate);
 }

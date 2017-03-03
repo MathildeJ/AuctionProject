@@ -82,6 +82,20 @@ public class BiddingBean implements Serializable {
         }
     }
 
+    
+    public boolean isBidCorrect() {
+        Item item = itemManager.findItem(itemId);
+        // Check if there is another bid with high bid on the current item
+        List<Bidding> bids = bidManager.getBidsByItem(item);
+        for(Bidding bidding : bids){
+            if(bidding.getBiddingPrice() > biddingPrice){
+                System.out.println("Must bid with higher amount ");
+                return false;
+            }
+        }
+        return true;
+    }        
+    
     public boolean isItemCorrect() {
         if (itemId == null) itemId = -1L;
         return itemManager.findItem(itemId) != null;
@@ -93,6 +107,15 @@ public class BiddingBean implements Serializable {
         System.out.println(person.getFamilyName());
         Item item = itemManager.findItem(itemId);
         System.out.println(item.getName());
+        // Check if there is another bid with high bid on the current item
+        List<Bidding> bids = bidManager.getBidsByItem(item);
+        for(Bidding bidding : bids){
+            if(bidding.getBiddingPrice() > biddingPrice){
+                System.out.println("Must bid with higher amount ");
+                // Quit
+                return;
+            }
+        }
         // Checking the auction is open for the item.
         if (item.getStatus() == 1 &&
             person.getCancelCounter() < 3 ){

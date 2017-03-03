@@ -8,7 +8,7 @@ package auction;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import javafx.scene.control.Alert;
+  //import javafx.scene.control%.Alert;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

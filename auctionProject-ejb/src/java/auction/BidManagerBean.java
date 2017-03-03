@@ -78,5 +78,12 @@ public class BidManagerBean implements BidManager {
         query.setParameter("end", endDate, TemporalType.DATE);
         return (List<Bidding>) query.getResultList();
     }
+
+    @Override
+    public List<Bidding> getBidsByItem(Item item) {
+        Query query = em.createQuery("SELECT b FROM Bidding b WHERE b.item = :item");
+        query.setParameter("item", item);
+        return (List<Bidding>) query.getResultList();
+    }
   
 }

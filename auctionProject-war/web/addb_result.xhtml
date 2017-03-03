@@ -14,7 +14,7 @@
             
             <c:when test="#{biddingBean.isItemCorrect() == false}">
                <div class="alert alert-danger">
-                    <strong>Warning!</strong> User not found.
+                    <strong>Warning!</strong> Item not found.
                 </div>
             </c:when>
             
@@ -27,6 +27,12 @@
             <c:when test="#{biddingBean.isBiddingPriceCorrect() == false}">
                <div class="alert alert-danger">
                     <strong>Warning!</strong> Bidding price is less than the starting price of the selected item.
+                </div>
+            </c:when>
+            
+            <c:when test="#{biddingBean.isBidCorrect() == false}">
+               <div class="alert alert-warning">
+                    <strong>Warning!</strong> The Bidding price is less than the previous bid amount of the selected item.
                 </div>
             </c:when>
             
