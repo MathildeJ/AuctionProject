@@ -34,6 +34,7 @@ public class PromotionUpdateBean implements PromotionUpdate {
     
     List<Promotion> promotions;
    
+    @PostConstruct
     @Schedule(second="0", minute="0", hour="*", dayOfMonth="*", month="*", year="*")
     public void updatePromotions() {
         System.out.println("Generating Promotions " + new Date());
@@ -49,8 +50,6 @@ public class PromotionUpdateBean implements PromotionUpdate {
 
     
     public List<Promotion> getPromotions() {
-        System.out.println("PROMOTIONS: " + promotions);
-        updatePromotions();
         return promotions;
     }
 
