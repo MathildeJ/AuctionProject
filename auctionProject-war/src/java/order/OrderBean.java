@@ -15,6 +15,8 @@ import java.util.concurrent.Future;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import auction.ShoppingCar;
+import java.util.List;
 
 /**
  *
@@ -32,6 +34,9 @@ public class OrderBean implements Serializable {
     @EJB
     private ItemManager im;
 
+    @EJB
+    private ShoppingCar shoppingCar;
+    
     private long personID;
     private long itemID;
     private String address;
@@ -135,4 +140,13 @@ public class OrderBean implements Serializable {
         } catch(InterruptedException | ExecutionException ex){
         }
     }
+    
+    public void addToCart(Item item) {
+        shoppingCar.addToShoppingCar(item);
+    }
+    
+    public List<Item> getShoppingCar() {
+        return shoppingCar.getItems();
+    }
+    
 }

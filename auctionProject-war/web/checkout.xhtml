@@ -11,13 +11,13 @@
     <ui:define name="content">       
 
         <div class="page-header">
-            <h1>List of possible items to order</h1>
+            <h1>Shopping Car</h1>
         </div>
         
         <h:form>
             <h:dataTable var="row" 
                          class="table table-bordered table-striped"
-                         value="#{itemBean.itemsForOrder(itemBean.searchUser)}"
+                         value="#{orderBean.getShoppingCar()}"
                          border="1" >
                 <h:column>
                     <f:facet name="header">Item name</f:facet>
@@ -47,15 +47,14 @@
                     <f:facet name="header">Person</f:facet>
                     #{row.person}
                 </h:column>
-                <h:column>  
-                  <h:commandButton value="Add to Cart" action="#{orderBean.addToCart(row)}"></h:commandButton>               
+                <h:column>                 
 
                 </h:column>
             </h:dataTable>
             <p/>            
         </h:form>
         <h:button value="New item" outcome="additem.xhtml" />
-        <h:button value="Go to Shopping Car" outcome="checkout.xhtml" />
+        <h:button value="Checkout" outcome="placeOrder.xhtml" />
         </ui:define>
  
 </ui:composition>
