@@ -14,7 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.Lock;
 import static javax.ejb.LockType.READ;
 import javax.ejb.Schedule;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

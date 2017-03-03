@@ -90,12 +90,17 @@ public class BiddingBean implements Serializable {
     public void addBidding() {
         // Find the owner of the item
         Person person = personManager.findPerson(personId);
+        System.out.println(person.getFamilyName());
         Item item = itemManager.findItem(itemId);
-        Bidding bidding = new Bidding();
-        bidding.setItem(item);
-        bidding.setPerson(person);
-        bidding.setBiddingPrice(biddingPrice);
-        bidManager.addBid(bidding);
+        System.out.println(item.getName());
+        // Checking the auction is open for the item.
+        if (item.getStatus() == 1){
+            Bidding bidding = new Bidding();
+            bidding.setItem(item);
+            bidding.setPerson(person);
+            bidding.setBiddingPrice(biddingPrice);
+            bidManager.addBid(bidding);
+        }
     }
 
     public List<Bidding> allBidding() {

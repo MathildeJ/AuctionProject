@@ -163,12 +163,13 @@ public class ItemManagerBean implements ItemManager {
     }   
      @Override
     public List<Item> listItemsForOrder(Long searchUser){
-        int searchStatus =2;
+        int searchStatus = 2;
         Person person = em.find(Person.class, searchUser);
-       Query query = em.createNamedQuery("Item.listUserStatus");
-       query.setParameter("person", person);
-       query.setParameter("status", searchStatus);
-       return (List<Item>) query.getResultList();
+        Query query = em.createNamedQuery("Item.listOrderItem2");
+        query.setParameter("person", person);
+        query.setParameter("status", searchStatus);
+        System.out.println("Test1s");
+        return (List<Item>) query.getResultList();
     }
 
     @Override

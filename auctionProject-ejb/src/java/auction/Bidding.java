@@ -39,11 +39,11 @@ public class Bidding implements Serializable {
     @Column(name = "biddingPrice")
     private double biddingPrice;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name="PERSON_ID", referencedColumnName="ID")
     private Person person;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name="ITEM_ID", referencedColumnName="ID")
     private Item item;
 

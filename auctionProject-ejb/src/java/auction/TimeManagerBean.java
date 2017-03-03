@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Schedule;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +28,7 @@ public class TimeManagerBean implements TimeManager {
     @EJB
     private ItemManager im;
     
-    @Schedule(second="0", minute="0", hour="*", dayOfMonth="*", month="*", year="*")
+    @Schedule(second="0", minute="*", hour="*", dayOfMonth="*", month="*", year="*")
     public  void updateItemStatus(){
         
         Date today = new Date();
@@ -36,11 +36,11 @@ public class TimeManagerBean implements TimeManager {
         c.setTime(today);
         
         //For testing purposes.
-//        c.add(Calendar.DAY_OF_MONTH, 2);
-//        today = c.getTime();
-//        c.setTime(today);
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        today = c.getTime();
+        c.setTime(today);
          
-        //System.out.println(c.getTime());
+        System.out.println(c.getTime());
         c.add(Calendar.DAY_OF_MONTH, -1);
         Date yesterday = c.getTime();
         //System.out.println("Date of yesterday" + yesterday );
