@@ -35,7 +35,9 @@ public class BidManagerBean implements BidManager {
     
     @Override
     public void cancelBid(Bidding bid) {
-        em.merge(bid);
+        if (bid.getPerson().getId() == 1L) {
+            em.remove(em.merge(bid));
+        }
     }
     
     @Override
@@ -48,14 +50,6 @@ public class BidManagerBean implements BidManager {
         // get list of bids
         Query query = em.createNamedQuery("Bidding.listAll");
        return (List<Bidding>) query.getResultList();
-    }
-
-    @Override
-    public String deleteBid(Bidding bid) {
-        em.getTransaction().begin();       
-        em.remove(bid);
-        em.getTransaction().commit();
-        return null;
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -80,7 +81,7 @@ public class Item implements Serializable {
     @JoinColumn(name="PERSON_ID", referencedColumnName="ID")
     private Person person;
     
-    @OneToMany(targetEntity=Bidding.class, mappedBy="item")
+    @OneToMany(targetEntity=Bidding.class, mappedBy="item", cascade = CascadeType.ALL)
     private List<Bidding> biddings;
     
     @ManyToMany(targetEntity=Category.class)

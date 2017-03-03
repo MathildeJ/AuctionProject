@@ -174,9 +174,9 @@ public class ItemManagerBean implements ItemManager {
 
     @Override
     public void removeItem(Item item) {
-        em.getTransaction().begin();
-        em.remove(item);
-        em.getTransaction().commit();
+        if(item.getPerson().getId() == 1L) {
+            em.remove(em.merge(item));
+        }
     }
 }
     
