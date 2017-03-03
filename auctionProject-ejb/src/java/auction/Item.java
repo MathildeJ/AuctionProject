@@ -43,7 +43,8 @@ import javax.persistence.Temporal;
             query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name="Item.listOrderItem", 
             query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status AND i.startPrice=(select max(i.startPrice) from Item i group by i.name)"),
-    
+            // query="SELECT i FROM Item i WHERE i.person = :person AND i.status = :status AND  max(i.startPrice) group by i.name)"),
+
 }) 
 
 public class Item implements Serializable {
