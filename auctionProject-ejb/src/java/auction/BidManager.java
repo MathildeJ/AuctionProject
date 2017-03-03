@@ -16,7 +16,6 @@ public interface BidManager {
     public void addBid(Bidding bid);
     public void cancelBid(Bidding bid);
     public Bidding getBid(Long id);
-    public String deleteBid(Bidding bid);
     public void updateBid(Bidding bid);
     public List<Bidding> getBids();
     public List<Bidding> getBidsByDate(Date startDate, Date endDate);

@@ -120,9 +120,6 @@ public class BiddingBean implements Serializable {
        }
        return listWinningBids;
     }
-    public void deleteBidding(Bidding bidding){
-        bidManager.deleteBid(bidding);
-    }
 
     public void cancelBidding(Bidding bidding){
         bidManager.cancelBid(bidding);
