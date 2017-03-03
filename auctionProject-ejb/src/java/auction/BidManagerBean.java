@@ -50,7 +50,7 @@ public class BidManagerBean implements BidManager {
                 em.merge(i);
                 em.merge(p);
             }
-                    em.remove(em.merge(bid));
+            em.remove(em.merge(bid));
         }
     }
     

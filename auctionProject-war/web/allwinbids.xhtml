@@ -51,6 +51,17 @@
                     <f:facet name="header">Bidding Price</f:facet>
                     #{row.biddingPrice}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandLink value="Cancel"
+                                   action="#{biddingBean.cancelBidding(row)}" styleClass="btn btn-default">
+                        <i class='glyphicon glyphicon-trash'/>
+                    </h:commandLink>
+                    <h:commandLink value="Add to cart"
+                                   action="#{biddingBean.addToCart(row)}" styleClass="btn btn-default">
+                        <i class='glyphicon glyphicon-trash'/>
+                    </h:commandLink>
+                </h:column>
             </h:dataTable>
             <p/>
             

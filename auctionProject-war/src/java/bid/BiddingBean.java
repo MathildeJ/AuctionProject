@@ -7,6 +7,7 @@ import auction.Item;
 import auction.ItemManager;
 import auction.Person;
 import auction.PersonManager;
+import auction.ShoppingCar;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
@@ -32,6 +33,9 @@ public class BiddingBean implements Serializable {
     @EJB
     private ItemManager itemManager;
 
+    @EJB
+    private ShoppingCar shoppingCar;
+    
     private Long personId = 0L;
     private Long itemId = 0L;
     private double biddingPrice;
@@ -108,13 +112,8 @@ public class BiddingBean implements Serializable {
         Item item = itemManager.findItem(itemId);
         System.out.println(item.getName());
         // Check if there is another bid with high bid on the current item
-        List<Bidding> bids = bidManager.getBidsByItem(item);
-        for(Bidding bidding : bids){
-            if(bidding.getBiddingPrice() > biddingPrice){
-                System.out.println("Must bid with higher amount ");
-                // Quit
-                return;
-            }
+        if(!isBidCorrect()){
+            return;
         }
         // Checking the auction is open for the item.
         if (item.getStatus() == 1 &&
@@ -136,16 +135,36 @@ public class BiddingBean implements Serializable {
     
     public List<Bidding> allWinningBiddding(){
        List<Bidding> listWinningBids = new LinkedList<>();
+       
        for (Bidding bidding : bidManager.getBids()){
            Item item = bidding.getItem();
-           if (item.getStartDate().after(new Date())){
+           if (item.getStatus() != 2){
+               System.out.println("Warning Item is not closed yet");
                continue;
            }
-           if(item.getEndDate().before(new Date())){
-               listWinningBids.add(bidding);
+           
+           double maxBidPrice = 0.0;
+           Bidding bidMax = null;
+           for (Bidding bidItem : bidManager.getBidsByItem(item)){
+               if(bidItem.getBiddingPrice() > maxBidPrice){
+                   bidMax = bidItem;
+                   maxBidPrice = bidItem.getBiddingPrice();
+               }
            }
+           
+           if(bidMax != null){
+               if (! listWinningBids.contains(bidMax)){
+               listWinningBids.add(bidMax);
+               }
+           }
+           
+        
        }
        return listWinningBids;
+    }
+    
+    public void addToCart(Bidding bidding){
+        shoppingCar.addToShoppingCar(bidding.getItem());
     }
 
     public void cancelBidding(Bidding bidding){
