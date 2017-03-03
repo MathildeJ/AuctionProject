@@ -5,8 +5,10 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <property name="javax.persistence.jdbc.user" value="root"/><!--APP-->
-      <property name="javax.persistence.jdbc.password" value="root"/><!--APP-->
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <!--APP-->
+      <property name="javax.persistence.jdbc.password" value="root"/>
+      <!--APP-->
     </properties>
   </persistence-unit>
 </persistence>

@@ -94,12 +94,16 @@ public class BiddingBean implements Serializable {
         Item item = itemManager.findItem(itemId);
         System.out.println(item.getName());
         // Checking the auction is open for the item.
-        if (item.getStatus() == 1){
+        if (item.getStatus() == 1 &&
+            person.getCancelCounter() < 3 ){
             Bidding bidding = new Bidding();
             bidding.setItem(item);
             bidding.setPerson(person);
             bidding.setBiddingPrice(biddingPrice);
             bidManager.addBid(bidding);
+        }
+        else{
+            System.out.println("Not allowed " + person.getCancelCounter());
         }
     }
 

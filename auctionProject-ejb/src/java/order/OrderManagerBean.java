@@ -54,7 +54,7 @@ public class OrderManagerBean implements OrderManager {
         OrderI order = new OrderI(winner, item, shippingAddress);
         CreditCard cc = new CreditCard(cctype, ccnumber);
         order.setCreditCard(cc);
-        if(checkOrder(order) && newOrder(order)){
+        if( newOrder(order)){
             order.setStatus(0);
             em.persist(order);
             lastOrder = order;
@@ -112,7 +112,7 @@ public class OrderManagerBean implements OrderManager {
 
     @Override
     public Boolean checkOrder(OrderI order){
-        List<Item> items = im.listItemByStatus(3);// check that item status is "OVER"/"WON"
+        List<Item> items = im.listItemByStatus(2);// check that item status is "OVER"/"WON"
         //should also check if the person who is placing the order won the bid on this item : search bids by item, check if last one is from person
         return(items.contains(order.getItem()));
     }

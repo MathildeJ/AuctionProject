@@ -58,5 +58,12 @@ public class PersonManagerBean implements PersonManager {
         return (List<Person>) query.getResultList();
     }
     
+     @Override
+    public List<Person> searchByCancelCounter(int times) {
+        Query query = em.createNamedQuery("Person.searchByCancelCounter");
+        query.setParameter("times", times);
+        return (List<Person>) query.getResultList();
+    }
+    
     
 }

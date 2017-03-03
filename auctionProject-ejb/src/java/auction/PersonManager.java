@@ -19,4 +19,5 @@ public interface PersonManager {
     public List<Person> listPersons();
     public Person findPerson(Long id);
     public List<Person> searchByPersonName(String firstName);
+    public List<Person> searchByCancelCounter(int times);
 }

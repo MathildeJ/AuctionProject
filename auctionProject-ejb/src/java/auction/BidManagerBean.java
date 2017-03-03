@@ -35,8 +35,22 @@ public class BidManagerBean implements BidManager {
     
     @Override
     public void cancelBid(Bidding bid) {
-        if (bid.getPerson().getId() == 1L) {
-            em.remove(em.merge(bid));
+        
+        /*if (bid.getPerson().getId() == 1L)*/ {
+            
+            if ( bid.getItem().getStatus() == 2)
+            {
+                Person p = bid.getPerson();
+                Item i =bid.getItem();
+                // Incrementing the counter of the person.
+                p.setCancelCounter(p.getCancelCounter()+ 1);
+                System.out.println(p.getCancelCounter());
+                // Canceling the item.
+                i.setStatus(5);
+                em.merge(i);
+                em.merge(p);
+            }
+                    em.remove(em.merge(bid));
         }
     }
     

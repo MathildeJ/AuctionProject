@@ -26,7 +26,10 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="Person.listAll", query = "SELECT p FROM Person p"),
     @NamedQuery(name="Person.searchByfirstName", 
-            query = "SELECT p FROM Person p WHERE p.firstName = :firstname")
+            query = "SELECT p FROM Person p WHERE p.firstName = :firstname"),
+    @NamedQuery(name="Person.searchByCancelCounter", 
+            query = "SELECT p FROM Person p WHERE p.cancelCounter = :times")
+        
 })
 @Table(name = "ROOT.PERSON")
 public class Person implements Serializable {
@@ -51,6 +54,9 @@ public class Person implements Serializable {
     
     @OneToMany(targetEntity=Item.class, mappedBy="person")
     private List<Item> items;
+    
+    @Column (name = "cancelCounter")
+    private int cancelCounter;
     
     public Person() {
     }
@@ -116,6 +122,20 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "auction.Person[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the cancelCounter
+     */
+    public int getCancelCounter() {
+        return cancelCounter;
+    }
+
+    /**
+     * @param cancelCounter the cancelCounter to set
+     */
+    public void setCancelCounter(int cancelCounter) {
+        this.cancelCounter = cancelCounter;
     }
     
 }
